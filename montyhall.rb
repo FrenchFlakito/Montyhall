@@ -13,7 +13,7 @@ def experience
 	new_answer = (box_numbers - [guess] - [revealed_box - 1])[0] + 1
 #	puts("Tu changes de boîte ? Très bien, tu choisis donc désormais la boîte #{new_answer}.")
 
-	if new_answer == truth
+	if new_answer - 1 == truth
 		puts "you win"
 	else
 		puts "Raté !"
