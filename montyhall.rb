@@ -14,9 +14,9 @@ def experience
 #	puts("Tu changes de boîte ? Très bien, tu choisis donc désormais la boîte #{new_answer}.")
 
 	if new_answer - 1 == truth
-		puts "you win"
+		return :win
 	else
-		puts "Raté !"
+		return :fail
 	end
 
 end
@@ -31,4 +31,24 @@ def reveal(truth, guess)   # à optimiser !!
 	return revealed
 end
 
-20.times do experience end
+
+############################
+
+log_wins = []
+log_fails = []
+
+25.times do
+	occurrence = experience 
+	if occurrence == :win
+		log_wins<<occurrence
+	else
+		log_fails<<occurrence
+	end
+end
+
+puts log_wins
+puts ""
+puts log_fails
+
+success_rate = log_wins.length.to_f / (log_wins.length + log_fails.length).to_f
+puts "En utilisant la stratégie du changement de boîte, vous obtenez sur cette simulation un taux de succès de #{success_rate} ! Badass, huh ?!"
