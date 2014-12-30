@@ -1,28 +1,22 @@
-def experience
+# Simulation code
 
-	disposition = ["rien", "rien", "voiture"].shuffle
-	box_numbers = [0, 1, 2]
+def experience
+	@box_numbers = [0, 1, 2]
 	truth = rand(3)
 	guess = rand(3)
 
-#	puts("Tu as choisi l\'option #{guess + 1}")
-	revealed_box = reveal(truth, guess) + 1
-#	puts("Maintenant, je te dis qu\'il n\'y avait rien dans la boîte #{revealed_box}")
+	clue = reveal(truth, guess)
+	new_answer = (@box_numbers - [guess] - [clue])[0]
 
-	# stratégie "je change"
-	new_answer = (box_numbers - [guess] - [revealed_box - 1])[0] + 1
-#	puts("Tu changes de boîte ? Très bien, tu choisis donc désormais la boîte #{new_answer}.")
-
-	if new_answer - 1 == truth
+	if new_answer == truth
 		return :win
 	else
 		return :fail
 	end
-
 end
 
-def reveal(truth, guess)   # à optimiser !!	
-	revealed = rand(3)
+def reveal(truth, guess)
+	revealed = 0
 	if truth == guess
 		revealed = rand(3) while revealed == truth
 	else
@@ -32,7 +26,7 @@ def reveal(truth, guess)   # à optimiser !!
 end
 
 
-############################
+# Visualization
 
 log_wins = []
 log_fails = []
