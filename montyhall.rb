@@ -1,6 +1,6 @@
-# Simulation code
+# Experiment code
 
-def experience
+def experiment
 	@box_numbers = [0, 1, 2]
 	truth = rand(3)
 	guess = rand(3)
@@ -26,23 +26,19 @@ def reveal(truth, guess)
 end
 
 
+
 # Visualization
 
-log_wins = []
-log_fails = []
+## Simulation
+score = {:win => 0, :fail => 0}
 
-25.times do
-	occurrence = experience 
-	if occurrence == :win
-		log_wins<<occurrence
-	else
-		log_fails<<occurrence
-	end
+samplesize = 250
+
+samplesize.times do
+	occurrence = experiment
+	score[occurrence] += 1
 end
 
-puts log_wins
-puts ""
-puts log_fails
-
-success_rate = log_wins.length.to_f / (log_wins.length + log_fails.length).to_f
-puts "En utilisant la stratégie du changement de boîte, vous obtenez sur cette simulation un taux de succès de #{success_rate} ! Badass, huh ?!"
+## Display
+success_rate = score[:win].to_f / samplesize.to_f
+puts "#{score[:win]} wins and #{score[:fail]} fails ! \nBy systematically choosing to change from your initial choice, you obtain in this simulation a #{success_rate}% success rate ! Badass, huh ?!"
