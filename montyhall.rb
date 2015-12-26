@@ -20,6 +20,7 @@ def reveal(truth, guess)
   else
     revealed = rand(3) while revealed == truth || revealed == guess
   end
+  return revealed
 end
 
 # Simulation
