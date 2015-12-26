@@ -25,14 +25,14 @@ end
 
 # Simulation
 score = { win: 0, fail: 0 }
-samplesize = 250
+samplesize = 1000
 samplesize.times do
   occurrence = experiment
   score[occurrence] += 1
 end
 
 # Display
-puts '#{score[:win]} wins and #{score[:fail]} fails !'
-puts 'By systematically choosing to change from your initial choice,'
-puts 'you obtain in this simulation a #{success_rate = score[:win].to_f / samplesize.to_f}% success rate !'
-puts 'Badass, huh ?!'
+puts "#{score[:win]} wins and #{score[:fail]} fails !"
+puts "By systematically choosing to change from your initial choice,"
+puts "you obtain in this simulation a #{100 * score[:win].to_f / samplesize.to_f}% success rate !"
+puts "Badass, huh ?!"
