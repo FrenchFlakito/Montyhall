@@ -28,7 +28,9 @@ score = { win: 0, fail: 0 }
 samplesize = 1000
 samplesize.times do
   occurrence = experiment
+  puts occurrence
   score[occurrence] += 1
+  sleep(0.001)
 end
 
 # Display
