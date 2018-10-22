@@ -3,9 +3,9 @@
 def experiment
   @box_numbers = [0, 1, 2]
   truth = rand(3)
-  guess = rand(3)
-  clue = reveal(truth, guess)
-  new_answer = (@box_numbers - [guess] - [clue])[0]
+  initial_guess = rand(3)
+  clue = reveal(truth, initial_guess)
+  new_answer = (@box_numbers - [initial_guess] - [clue])[0]
   if new_answer == truth
     return :win
   else
@@ -13,24 +13,24 @@ def experiment
   end
 end
 
-def reveal(truth, guess)
+def reveal(truth, initial_guess)
   revealed = 0
-  if truth == guess
+  if truth == initial_guess
     revealed = rand(3) while revealed == truth
   else
-    revealed = rand(3) while revealed == truth || revealed == guess
+    revealed = rand(3) while revealed == truth || revealed == initial_guess
   end
   return revealed
 end
 
 # Simulation
 score = { win: 0, fail: 0 }
-samplesize = 1000
+samplesize = 50000
 samplesize.times do
   occurrence = experiment
   puts occurrence
   score[occurrence] += 1
-  sleep(0.001)
+  sleep(0.00001)
 end
 
 # Display
